@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>XVue Test</title>
+	<script type="application/javascript" src="compile.js"></script>
+	<script type="application/javascript" src="xvue.js"></script>
+</head>
+<body>
+<div class="wrap">
+	<!--name-->
+	1.<p>{{name}} {{age}}</p>
+	2.<p x-text="name"></p>
+	3.<p>{{age}}</p>
+	4.<div>
+		<span :html="name"></span>
+		</div>
+	5.<div :text="name"></div>
+	6.<div class="div-name">{{name}}</div>
+	7.<span>{{pig.name}}</span>
+	8.<input type="button" @click="onClick" value="click me" />
+	9.<input x-model="name"/>
+</div>
+<script>
+	new XVue({
+		el:'.wrap',
+		data:{
+			name:'Jabbar',
+			age:28,
+			pig:{
+			  name:"Stack"
+			}
+		},
+		created(){
+			setTimeout(()=>{
+				this.$data.name = 'James Curry';
+			},2000);
+		},
+		methods:{
+			onClick(){
+				alert(`${this.name} has ${this.age} years old`);
+			}
+		}
+	});
+</script>
+</body>
+</html>
